@@ -1,0 +1,445 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PEEKABOO</title>
+    <style>
+        /* General Styles */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f4f4f4;
+}
+
+h1, h2, h3, p {
+    margin: 0;
+    padding: 10px;
+}
+
+header {
+    background-color: white;
+    color: black;
+    text-align: center;
+    position: fixed; /* Fix the header */
+    top: 0; /* Position it at the top */
+    width: 100%; /* Full width */
+    z-index: 1000; /* Ensure it stays above other content */
+}
+
+header h1 {
+    margin: 0;
+    padding: 15px;
+    font-size: 24px;
+}
+
+/* Menu Button and Dropdown Menu */
+.menu-btn {
+    font-size: 18px;
+    color: black;
+    background: none;
+    border: none;
+    cursor: pointer;
+    position: absolute;
+    top: 10px;
+    left: 10px;
+}
+.profile-menu {
+    display: none;
+    position: absolute;
+    top: 60px;
+    left: 15px;
+    background-color: white;
+    padding: 10px;
+    border-radius: 4px;
+    width: 150px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    z-index: 1111;
+}
+.profile-menu a {
+    display: block;
+    color: black;
+    text-decoration: none;
+    padding: 8px;
+    border-radius: 4px;
+    transition: background-color 0.3s;
+}
+.profile-menu a:hover {
+    background-color: pink;
+    color: white;
+}
+
+/* Dashboard */
+.dashboard {
+    display: flex;
+    justify-content: space-around;
+    background-color: purple;
+    padding: 15px;
+    text-align: center;
+    border-radius: 100px;
+    margin: 10px 0;
+    position: fixed; /* Fix the dashboard */
+    top: 45px; 
+    width: 95%; /* Full width */
+    z-index: 999; /* Ensure it stays above other content */
+    padding: 10px;
+}
+.dashboard a {
+    color: #fff;
+    text-decoration: none;
+    padding: 10px;
+    width: 40%;
+    border-radius: 4px;
+    cursor: pointer;
+    border-radius: 50px;
+    transition: background-color 0.3s;
+}
+.dashboard a.active {
+    background-color: white;
+    color: purple;
+}
+
+.search-bar {
+    display: flex;
+    align-items: center;
+    padding: 10px 15px;
+    background-color: #fff;
+    margin-bottom: 10px;
+    width: 90%;
+    position: fixed; /* Fix the search bar */
+    top: 120px; /* Position it below the dashboard */
+    right: 10px; /* Align it to the right */
+    left: 3%;
+    z-index: 1001;
+    border-radius: 10px;
+}
+.search-bar input {
+    width: 80%;
+    padding: 10px;
+    margin-right: 10px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+}
+.search-bar button {
+    padding: 10px 15px;
+    background-color: #333;
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+/* Section Styles */
+.section {
+    display: flex;
+    flex-wrap: wrap; /* Allow items to wrap onto the next line */
+    justify-content: space-between; /* Space between the items */
+    padding: 10px;
+}
+.section .card {
+    flex: 0 1 calc(50px - 20px); /* Two cards per row */
+    margin: 10px; /* Margin for spacing */
+    padding: 15px;
+    background-color: #fff;
+    text-align: center;
+    border-radius: 6px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    cursor: pointer;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.card img {
+    width: 50%; /* Make the image smaller */
+    height: auto;
+    margin-bottom: 10px;
+    border-radius: 4px;
+}
+
+.card p {
+    font-size: 16px;
+    color: #333;
+    font-weight: bold;
+    text-decoration: none;
+}
+a {
+    text-decoration: none;
+    color: inherit;
+}
+
+/* Add hover effects */
+.card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+}
+.card p:hover {
+    color: purple;
+}
+
+/* Footer */
+.footer {
+    position: fixed;
+    width: 100%;
+    bottom: 0;
+    display: flex;
+    justify-content: space-around;
+    padding: 10px;
+    background-color: #333;
+}
+.footer a {
+    color: #fff;
+    text-decoration: none;
+    padding: 10px 15px;
+}
+.white-box {
+            width: 100%;
+            height: 150px;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        .black-box {
+            width: 100%;
+            height: 200px;
+            background-color: #f4f4f4;
+            margin: 0;
+            left: 0px;
+            right: 0px;
+            border-bottom: #333 solid ;
+            padding: 0;
+            position: fixed;
+            top: 0px;
+            z-index: 11;
+            box-sizing: border-box;
+        }
+/* Profile Menu Social Links */
+.social-links {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    margin-top: 10px;
+}
+.social-links img {
+    transition: transform 0.3s;
+}
+.social-links img:hover {
+    transform: scale(1.1);
+}
+
+/* Responsive Design */
+
+
+/* Responsive Design */
+@media (max-width: 20000px) {
+            .dashboard a {
+                width: 100%; /* Make buttons full width */
+            }
+
+            .section .card {
+                flex: 1 1 calc(50% - 20px); /* Default to 2 items per row */
+            }
+
+            header h1 {
+                font-size: 20px; /* Smaller header on smaller screens */
+            }
+        }
+
+        @media (max-width: 480px) {
+            .section .card {
+                flex: 1 1 100%; /* 1 item per row */
+            }
+        }
+        
+    </style>
+</head>
+<body>
+
+<header>
+    <!-- Menu Button for Profile -->
+    <button class="menu-btn" onclick="toggleMenu()">☰ Menu</button>
+    <h1>PEEKABOO</h1>
+</header>
+
+<!-- Profile Menu -->
+<div class="profile-menu" id="profileMenu">
+    <a href="#" onclick="showPage('buy-now'); hideMenu();">Buy Now</a>
+    <a href="#"; hideMenu();>About Us</a>
+    <a href="#" onclick="showPage('home'); hideMenu();">Home</a>
+    <a href="#"; hideMenu();>Share</a>
+    <div class="social-links">
+        <a href="https://facebook.com" target="_blank"><img src="facebook.png" alt="Facebook" style="width: 30px; height: 30px;"></a>
+        <a href="https://instagram.com" target="_blank"><img src="instagram.jpg" alt="Instagram" style="width: 30px; height: 30px;"></a>
+        <a href="https://whatsapp.com" target="_blank"><img src="whatsapp.jpg" alt="WhatsApp" style="width: 30px; height: 30px;"></a>
+    </div>
+</div>
+
+<div id="content">
+    <!-- Buy Now Section -->
+    <div id="buy-now" class="section">
+        <div class="dashboard" id="dashboard">
+            <a href="#" id="toddlerTab" onclick="showBuyNowSection('toddler')" class="active">Toddler</a>
+            <a href="#" id="kidsTab" onclick="showBuyNowSection('kids')">Kids</a>
+        </div>
+        <!-- Toddler Section -->
+        <div id="toddlerSection" style="display: block;">
+            
+            <div class="search-bar" id="searchBar">
+                <input type="text" id="toddlerSearchInput" placeholder="Search Toddler...">
+                <button onclick="filterComponents('toddler')">Search</button>
+            </div>
+            <h2>Toddler</h2>
+            <div class="section">
+                <div class="black-box"></div>
+                <div class="white-box"></div>
+                <a href="https://www.amazon.in/TULOO-Adjustable-Protective-Headguard-Crawling/dp/B0D2LFDZLY/ref=asc_df_B0D2LFDZLY/?tag=googleshopmob-21&linkCode=df0&hvadid=709962970022&hvpos=&hvnetw=g&hvrand=11712473174806225902&hvpone=&hvptwo=&hvqmt=&hvdev=m&hvdvcmdl=&hvlocint=&hvlocphy=9303196&hvtargid=pla-2301958676366&psc=1&mcid=0902be94cb263fac90b6a2e1f83e2891&gad_source=1" target="_blank">
+                    <div class="card">
+                        <img src="Toddler1.jpeg" alt="Toddler Product 1">
+                        <p>Toddler Product 1</p>
+                    </div>
+                </a>
+                <a href="https://www.amazon.in/Littles-Stacking-Multi-Colour-Colorful-Reasoning/dp/B00ADZUNYK/ref=mp_s_a_1_6?crid=16ZFOPG1B75IX&dib=eyJ2IjoiMSJ9.ljE7M2GWEOd4cROwfkf4o6mo3oYMwHwtvqA3awfayOMMFURXx0G0BppZZLCs5-i727YZyFzWaZWamsyDNWktiCRpfSfy9rTpovwASe-bBiu8_o2umFSnNyNomFeBL--5IPHKEGPY-tfjqGRvFpFWkpFXvyAKxreiZ6m4y7hmzsnRnlWQG-HTl0Yt0cqjPAwT34gPoXGV7WIgYAPO8dUq8Q.acxa2sah-tAAF8RCzZi9jpPCNZTsqVtufkEz9dZ9t7o&dib_tag=se&keywords=baby+products+for+6+to+12+months+baby&nsdOptOutParam=true&qid=1730359111&sprefix=baby+products%2Caps%2C251&sr=8-6" target="_blank">
+                    <div class="card">
+                        <img src="Toddler2.jpeg" alt="Toddler Product 1">
+                        <p>Toddler Product 2</p>
+                    </div>
+                </a>
+                <a href="https://www.amazon.in/Rabbit-Adjustment-Removable-Months-3-Warranty/dp/B09N6NJWTC/ref=sxin_21_pa_sp_phone_search_thematic_sspa?content-id=amzn1.sym.3edc76f9-2172-4ae4-abf9-6647cc46208d%3Aamzn1.sym.3edc76f9-2172-4ae4-abf9-6647cc46208d&crid=16ZFOPG1B75IX&cv_ct_cx=baby+products+for+6+to+12+months+baby&dib=eyJ2IjoiMSJ9.iO34Ox5rky7ZuVJpJqPT2adsxh2kNPWciN-uWmTxuTU_sak3kU4jhU_52KIMfwiCklAn62QIG7oqdA8B-mT8sg.pc86qcLFv6Rx_TmQtzH0M93Y3vznT5BEyivLsy3Easg&dib_tag=se&keywords=baby+products+for+6+to+12+months+baby&nsdOptOutParam=true&pd_rd_i=B09N6NJWTC&pd_rd_r=88b5c806-fa8d-45ab-ad75-cf2f4caa245d&pd_rd_w=mZiPR&pd_rd_wg=zJT2c&pf_rd_p=3edc76f9-2172-4ae4-abf9-6647cc46208d&pf_rd_r=3E94F2M7EEAA498KFHT2&qid=1730359168&sprefix=baby+products%2Caps%2C251&sr=1-2-ced4eeeb-b190-41d6-902a-1ecb3fb8b7c4-spons&sp_csd=d2lkZ2V0TmFtZT1zcF9waG9uZV9zZWFyY2hfdGhlbWF0aWM&psc=1" target="_blank">
+                    <div class="card">
+                        <img src="Toddler3.jpeg" alt="Toddler Product 1">
+                        <p>Toddler Product 3</p>
+                    </div>
+                </a>
+                <a href="https://www.amazon.in/Dawnwake-Playpen-Suction-Foldable-Toddlers/dp/B0D2VVRJC5/ref=mp_s_a_1_9_sspa?crid=16ZFOPG1B75IX&dib=eyJ2IjoiMSJ9.ljE7M2GWEOd4cROwfkf4o6mo3oYMwHwtvqA3awfayOMMFURXx0G0BppZZLCs5-i727YZyFzWaZWamsyDNWktiCRpfSfy9rTpovwASe-bBiu8_o2umFSnNyNomFeBL--5IPHKEGPY-tfjqGRvFpFWkpFXvyAKxreiZ6m4y7hmzsnRnlWQG-HTl0Yt0cqjPAwT34gPoXGV7WIgYAPO8dUq8Q.acxa2sah-tAAF8RCzZi9jpPCNZTsqVtufkEz9dZ9t7o&dib_tag=se&keywords=baby+products+for+6+to+12+months+baby&nsdOptOutParam=true&qid=1730359168&sprefix=baby+products%2Caps%2C251&sr=8-9-spons&sp_csd=d2lkZ2V0TmFtZT1zcF9waG9uZV9zZWFyY2hfbXRm&psc=1" target="_blank">
+                    <div class="card">
+                        <img src="Toddler4.jpeg" alt="Toddler Product 1">
+                        <p>Toddler Product 4</p>
+                    </div>
+                </a>
+                <a href="https://www.amazon.in/Chinmay-Kids-Polycotton-Adjustable-Backpack/dp/B079SW6HB5/ref=mp_s_a_1_13?crid=16ZFOPG1B75IX&dib=eyJ2IjoiMSJ9.ljE7M2GWEOd4cROwfkf4o6mo3oYMwHwtvqA3awfayOMMFURXx0G0BppZZLCs5-i727YZyFzWaZWamsyDNWktiCRpfSfy9rTpovwASe-bBiu8_o2umFSnNyNomFeBL--5IPHKEGPY-tfjqGRvFpFWkpFXvyAKxreiZ6m4y7hmzsnRnlWQG-HTl0Yt0cqjPAwT34gPoXGV7WIgYAPO8dUq8Q.acxa2sah-tAAF8RCzZi9jpPCNZTsqVtufkEz9dZ9t7o&dib_tag=se&keywords=baby+products+for+6+to+12+months+baby&nsdOptOutParam=true&qid=1730359168&sprefix=baby+products%2Caps%2C251&sr=8-13" target="_blank">
+                    <div class="card">
+                        <img src="Toddler5.jpeg" alt="Toddler Product 1">
+                        <p>Toddler Product 5</p>
+                    </div>
+                </a>
+                <a href="https://www.amazon.in/Fisher-Price-Bottle-Sterilizer-Bottles-Accessories/dp/B08LD81654/ref=sxbs_pa_sp_phone_search_thematic_btf_sspa?content-id=amzn1.sym.d4560c58-4b0a-4dc5-b13a-1210a9d82ca0%3Aamzn1.sym.d4560c58-4b0a-4dc5-b13a-1210a9d82ca0&crid=16ZFOPG1B75IX&cv_ct_cx=baby+products+for+6+to+12+months+baby&dib=eyJ2IjoiMSJ9.6s3rBxje4CsxkRx59GvKElP8wYO6rZEuVK0xBmYFX6WMSjqefGA0Qc0bq1kpxrms.bMLxF20_EQqPl9eIDtsLiWA7CgfjEe12kUuRm2CCScs&dib_tag=se&keywords=baby+products+for+6+to+12+months+baby&nsdOptOutParam=true&pd_rd_i=B08LD81654&pd_rd_r=bffe0b55-7bf9-4ee3-84e9-269621573f57&pd_rd_w=m5HYz&pd_rd_wg=bPebw&pf_rd_p=d4560c58-4b0a-4dc5-b13a-1210a9d82ca0&pf_rd_r=3E94F2M7EEAA498KFHT2&qid=1730359168&sprefix=baby+products%2Caps%2C251&sr=1-1-2907eac4-8056-42c7-8014-fdf7bd4c5395-spons&sp_csd=d2lkZ2V0TmFtZT1zcF9waG9uZV9zZWFyY2hfdGhlbWF0aWNfYnRm&psc=1" target="_blank">
+                    <div class="card">
+                        <img src="Toddler6.jpeg" alt="Toddler Product 1">
+                        <p>Toddler Product 6</p>
+                    </div>
+                </a>
+
+            </div>
+        </div>
+
+        <!-- Kids Section -->
+        <div id="kidsSection" style="display: none;">
+            <div class="search-bar">
+                <input type="text" id="kidsSearchInput" placeholder="Search Kids...">
+                <button onclick="filterComponents('kids')">Search</button>
+            </div>
+            <h2>Kids</h2>
+            <div class="section">
+                <div class="black-box"></div>
+                <div class="white-box"></div>
+                <a href="https://www.amazon.in/Leader-Plastic-Tubeless-Training-SEMI-Assembled/dp/B08WHDFK5V/ref=mp_s_a_1_2_sspa?crid=2Q5XIIXZW75FV&dib=eyJ2IjoiMSJ9.SHCvlPl4X3o7APNbhlGJysQibAAY0-vfKjbMnZgq6qUPljeRv_c4zbomzK4XJCgTXZerCZezNTXbNHQqrE2nxsXZoxj4uyyOMQ3A34mSkDHfmCba07IyPvakLrneDCNaP0CwtoNKDVxtV43jNTl-dhOIO5Beo2aW22bZ4TgTblJTT0maVsxH59d1SUGfk6NoseR4pfGeVqxu3krwfxpTIA.NPaY-FMnYJGIbY_86p_aQk5uTotlU3jFky-7SrnDfV8&dib_tag=se&keywords=cycle+for+kids+for+2+years&qid=1730359419&sprefix=cycle%2Caps%2C442&sr=8-2-spons&sp_csd=d2lkZ2V0TmFtZT1zcF9waG9uZV9zZWFyY2hfYXRm&psc=1" target="_blank">
+                    <div class="card">
+                        <img src="Kids1.jpeg">
+                        <p>Cycle</p>
+                    </div>
+                </a> 
+                <a href="https://www.amazon.in/PASSION-PETALS-Fashion-Colorblocked-18Months/dp/B0CZDNF3LB/ref=mp_s_a_1_13?crid=29CVZMOS61FAA&dib=eyJ2IjoiMSJ9.zQG7dHnH2i95iUiolpYIqZzEB6_gE2s64tuxqPpM8emj7pcHJociupUSCis7_OzHyr7EcjyHF3CEin3aqhA8SBXyswJEYHUKWYybdXEy9SpW034qAN-ETEp2V6zs-ue018mUt7mGYJOwgP4odvPVDxSvn8MHQm63rbgJUVgxoXCrUH_Gw3wzdxQCvFxrdah4dY0AcOEf_uCThrcUIo9F-VKV3SXxt7xRj_3FCaLZvepTI0pCSHf2O26hE-CXYkdAmFQKNYvp2mS76j2olm9w3EBbxFgrSfBDqnqahXqkmhk.anoIhWaDpXayj0FPrBiWYXjOQ1gAg5gcycs3Hld5vFQ&dib_tag=se&keywords=2-4+years+kids+shoes&qid=1730359498&sprefix=2-4+yrs+kids%2Caps%2C250&sr=8-13" target="_blank">
+                    <div class="card">
+                        <img src="Kids2.jpeg">
+                        <p>Kids Product 2</p>
+                    </div>
+                </a> 
+                <a href="https://www.amazon.in/HappyChild-School-Animal-Cartoon-Travel/dp/B0CSDT6SNF/ref=mp_s_a_1_5?crid=2ZRUCC0AOJ0O8&dib=eyJ2IjoiMSJ9.-L-w-tTINP5qWyWk1BVh5NkSg1Qh1JgoaR9h2ocyrNDX5HZwabbpTDdWzAiEsi-vpJz0Dnz3y9MuvHFerlq_w3xdWYJnAXqltkf-FacGSQZTCC6ugaixsWdEt6md7Q2-5sX_JK0J_V7NW3Tuw12paCnRO88M0VsKBq1cIkRdNeWOAkixT_ROzHiEOXJi90eAElocSj1myAV4dfr7LIx9IA.Loe8LCVeN3IaaB-F0f_msjqAj1ojtZay6nw6SOUfy6Q&dib_tag=se&keywords=2-4+years+kids&qid=1730359565&sprefix=2-4+yrs+kids+%2Caps%2C245&sr=8-5" target="_blank">
+                    <div class="card">
+                        <img src="Kids3.jpeg">
+                        <p>Kids Product 3</p>
+                    </div>
+                </a>             
+            </div>
+        </div>
+    </div>
+
+    <!-- Home Section -->
+    <div id="home" class="home-media section" style="display:none;">
+        <img src="img1.jpg" alt="Image 1">
+        <img src="img2.jpg" alt="Image 2">
+        <img src="img3.jpg" alt="Image 3">
+        <video src="video1.mp4" controls></video>
+        <iframe width="560" height="315" src="https://www.youtube.com/embed/wDchsz8nmbo" title="YouTube video player"></iframe>
+        <video src="video2.mp4" controls></video>
+    </div>
+</div>
+
+<!-- Footer Links
+<div class="footer">
+    <a href="#" onclick="showPage('buy-now')">Buy Now</a>
+    <a href="#" onclick="showPage('home')">Home</a>
+</div> -->
+
+<script>
+    // Toggle Profile Menu
+    function toggleMenu() {
+        const menu = document.getElementById('profileMenu');
+        menu.style.display = menu.style.display === 'block' ? 'none' : 'block';
+    }
+
+    // Hide Profile Menu
+    function hideMenu() {
+        document.getElementById('profileMenu').style.display = 'none';
+    }
+    
+    // Page Navigation
+    function showPage(pageId) {
+        document.querySelectorAll('#content > div').forEach(page => {
+            page.style.display = 'none';
+        });
+        document.getElementById(pageId).style.display = 'block';
+    }
+
+    // Toggle Toddler/Kids Sections
+    function showBuyNowSection(section) {
+        document.getElementById('toddlerSection').style.display = 'none';
+        document.getElementById('kidsSection').style.display = 'none';
+        document.getElementById('toddlerTab').classList.remove('active');
+        document.getElementById('kidsTab').classList.remove('active');
+        if (section === 'toddler') {
+            document.getElementById('toddlerSection').style.display = 'block';
+            document.getElementById('toddlerTab').classList.add('active');
+        } else {
+            document.getElementById('kidsSection').style.display = 'block';
+            document.getElementById('kidsTab').classList.add('active');
+        }
+    }
+
+    // Redirect to Product Page
+    function redirectPage(product) {
+        alert("Redirecting to product: " + product);
+    }
+
+    // Close profile menu when clicking outside of it
+    window.addEventListener('click', function(event) {
+        const menu = document.getElementById('profileMenu');
+        const menuButton = document.querySelector('.menu-btn');
+        if (menu.style.display === 'block' && !menu.contains(event.target) && event.target !== menuButton) {
+            menu.style.display = 'none';
+        }
+    });
+
+    function filterComponents(section) {
+            const query = document.getElementById(`${section}SearchInput`).value.toLowerCase();
+            document.querySelectorAll(`#${section}Section .card`).forEach(card => {
+                const text = card.innerText.toLowerCase();
+                card.style.display = text.includes(query) ? "block" : "none";
+            });
+        }
+    // Default Page
+    showPage('buy-now');
+</script>
+
+</body>
+</html>
